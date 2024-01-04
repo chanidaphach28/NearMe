@@ -10,7 +10,10 @@ export default function addRoom(){
   const [img , setImg] = useState("");
   const [price , setPrice] = useState("");
   const [detail , setDetail] =useState("");
+  const [lat , setLat] =useState("");
+  const [long , setLong] =useState("");
   const router = useRouter();
+
   const handleSubmitt = async (e) => {
     e.preventDefault();
     if(!type || !dorm_name || !location || !img || !price || !detail ){
@@ -24,7 +27,7 @@ export default function addRoom(){
                   headers: {
                     "Content-type": "application/json",
                   },
-                  body: JSON.stringify({type,dorm_name,location,img,price,detail }),
+                  body: JSON.stringify({type,dorm_name,location,img,price,detail,lat,long  }),
                 });
                 if (res.ok) {
                   alert("addPost Success");
@@ -60,6 +63,13 @@ export default function addRoom(){
 
         <input className={styles.input_box} placeholder="price" type="text"
         onChange={(e) => setPrice(e.target.value)} value={price}/>
+                
+           <input className={styles.input_box} placeholder="latitude" type="text"
+          onChange={(e) => setLat(e.target.value)} value={lat}/>
+
+        <input className={styles.input_box} placeholder="longitude" type="text"
+          onChange={(e) => setLong(e.target.value)} value={long}/>
+
 
         <input className={styles.input_detail} placeholder="detail" type="text"
          onChange={(e) => setDetail(e.target.value)} value={detail}/>
